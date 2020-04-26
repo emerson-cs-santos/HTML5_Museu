@@ -27,6 +27,8 @@
 
         <!-- JavaScript -->
         <script src="js/login.js"></script>
+        <script src="js/registrar.js"></script>
+        <script src="js/usuario.js"></script>
         <script src="js/funcoes.js"></script>
     </head>
 
@@ -37,9 +39,9 @@
 
                     <nav id='navbar' class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
 
-                            <a class="nav_link col-2" href='Index.php'><img src='Imagens/icon.png' alt='Logo do site' style='height:100px; width:100px;' data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial"></a>
+                            <a class="nav_link col-2" href='index.php'><img src='Imagens/icon.png' alt='Logo do site' style='height:100px; width:100px;' data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial"></a>
                       
-                            <a class="navbar-brand" href="Index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
+                            <a class="navbar-brand" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
                                 Home
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
@@ -49,7 +51,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                
                                 <!-- Left Side Of Navbar -->
-                                <ul class="navbar-nav mr-auto">
+                                <ul class="navbar-nav mr-auto text-center">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica (1 min por obra)">Apresentação das obras</a>
                                     </li>
@@ -71,18 +73,35 @@
                                             <a class="nav-link" href="#">Home</a>
                                     </li>-->
                                     
-                                    <li class="nav-item dropdown">
+                                    <li class="nav-item dropdown text-center">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre data-placement="top" data-toggle="tooltip" title="Opções do autor">
-                                            Usuário X ou Convidado(Sem sessão)
+                                            <?php
+                                                if (isset($_SESSION['controle']))
+                                                {
+                                                    $user = $_SESSION['controle'];
+                                                    echo "Bem vindo! $user";
+                                                }
+                                                else
+                                                {
+                                                    echo " Convidado ";
+                                                }
+                                            ?>
                                         </a>
 
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#" onclick="">
+                                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="perfil.php" data-placement="top" data-toggle="tooltip" title="Acessar suas informações">
                                                 Perfil
                                             </a>
-                                            <a class="dropdown-item" href="#" onclick="">
+                                            <a class="dropdown-item" href="#" data-placement="top" data-toggle="tooltip" title="Acessar suas obras">
                                                 Minhas Obras
-                                            </a>                                            
+                                            </a>
+
+                                            <?php
+                                                if (isset($_SESSION['controle']))
+                                                {
+                                                    echo "<a class='dropdown-item' href='php/sair.php' data-placement='top' data-toggle='tooltip' title='Encerrar sessão'> Sair </a>";
+                                                }
+                                            ?>                                            
                                         </div>                                       
                                     </li>
                                 </ul>

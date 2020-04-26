@@ -1,5 +1,5 @@
 <?php
-  //  session_start();
+    session_start();
     include('cabec.php');
 ?>           
                     <h1 class="text-center mt-5">Museu</h1>

@@ -1,5 +1,5 @@
 <?php
-  //  session_start();
+    include('php/sessao.php');
     include('cabec.php');
 ?>           
                     <h1 class="text-center mt-5">Título</h1>
