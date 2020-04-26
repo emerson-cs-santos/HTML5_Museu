@@ -25,7 +25,7 @@
                         </div>
 
                         <!-- Modal - Resetar Senha -->
-                        <div id="myModal" class="modal fade" role="dialog">
+                        <div id="myModal" class="modal" role="dialog">
 
                             <div class="modal-dialog">
 
@@ -59,7 +59,7 @@
                                     </div>
 
                                     <div class="modal-footer d-flex justify-content-center">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-placement="top" data-toggle="tooltip" title="Cancelar procedimento de troca de senha">Fechar</button>
+                                        <input type="button" value="Fechar" class="btn btn-secondary" data-dismiss="modal" data-placement="top" data-toggle="tooltip" title="Cancelar procedimento de troca de senha">
                                     </div>
                                 </div>
                             </div>
