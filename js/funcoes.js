@@ -44,3 +44,24 @@ function validar_email(email)
         return(true);
     }
 }
+
+// VERIFICA SE SESSION STORAGE ESTÁ DISPONIVEL
+function sessionStorage_verif()
+{
+    if (sessionStorage)
+    {
+        return true;
+    }
+    else
+    {
+        swal(
+            {
+                title: "Navegador incompatível!",
+                text: "Por favor utilizar outro navegador!",
+                icon: "error",
+                button: "OK",
+            }
+        );
+        return false;
+    }
+}

@@ -1,5 +1,10 @@
 function login() 
-{
+{    
+    if (!sessionStorage_verif())
+    {
+        return false;
+    }
+    
     const login = document.getElementById("login_user").value;
     const senha = document.getElementById("login_senha").value;
 
@@ -61,6 +66,31 @@ function login()
                             }
                         )
                     break;
+
+                case 'inat':
+
+                    swal({
+                        title: "Ativar seu usuário?",
+                        text: "Você voltará a ter acesso a suas obras e elas voltaram a ser exibidas no site.",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                        if (willDelete) {
+                            desativarUsuario(login,'ativar');
+                        } else {
+                            swal(
+                                {
+                                    title:  "Processo cancelado!",
+                                    text:   'Seu usuário ainda está inativo!',
+                                   
+                                    button: "OK",
+                                }
+                            )             
+                        }
+                        })
+                    break;                
 
                 default:
                     swal(

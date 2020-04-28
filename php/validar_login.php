@@ -43,7 +43,7 @@ if ($resposta == 'ok')
 
 	if($status=='inativo')
 	{
-		$resposta = 'erro-Usuário está inativo, Deseja ativar novamente?';
+		$resposta = 'inat-Usuário está inativo!';
 	}
 }
 

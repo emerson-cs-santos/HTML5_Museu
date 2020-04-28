@@ -22,7 +22,7 @@ if(!isset($senhaConfirmar))
 
 if(!isset($email))
 {
-    $email = 0;
+    $email = '';
 }
 
 include('funcoes.php');
@@ -58,7 +58,7 @@ if ( valida_espaco($userName) or valida_espaco($senha) or valida_espaco($senhaCo
 }
 
 // Senhas iguais
-if ($senha != $senhaConfirmar) 
+if ($senha !== $senhaConfirmar) 
 {
 	echo "erro-Senhas digitadas têm que ser iguais!";
 	return;	

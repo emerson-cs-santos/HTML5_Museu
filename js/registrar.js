@@ -1,5 +1,10 @@
 function registrar()
 {
+    if (!sessionStorage_verif())
+    {
+        return false;
+    }    
+    
     const userName          = document.getElementById('registrar_login').value;
     const email             = document.getElementById('registrar_email').value;
     const senha             = document.getElementById('registrar_senha').value;

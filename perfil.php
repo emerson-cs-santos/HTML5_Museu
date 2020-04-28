@@ -1,6 +1,20 @@
 <?php
     include('php/sessao.php');
     include('cabec.php');
+
+    include('PHP'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
+
+    $query          = "select email from usuarios where nome = ?";
+    $querytratada   = $conn->prepare($query); 
+    $nome           = $_SESSION['controle'];
+    
+    $querytratada   ->bind_param("s",$nome);
+    $querytratada   ->execute();
+    
+    $result         = $querytratada->get_result();
+
+    $row            = $result->fetch_assoc();
+    $email          = $row["email"];
 ?>           
                     <h1 class="text-center mt-5">Seu Perfil</h1>
                 </div> 
@@ -14,13 +28,13 @@
                                 <h2> Informações de cadastro </h2>
                             </div>
                             
-                            <input type="text" id="perfil_login" class="form-control mt-3" placeholder="Usuário" maxlength="20" data-placement="top" data-toggle="tooltip" title="Digite o nome do usuário">  
-                            <input type="email" id="perfil_email" class="form-control mt-3" placeholder="nome@server.com.br" maxlength="200" data-placement="top" data-toggle="tooltip" title="Digite seu e-mail">
+                            <input type="text" id="perfil_login" class="form-control mt-3" value="<?php echo $nome; ?>" placeholder="Usuário" maxlength="20" data-placement="top" data-toggle="tooltip" title="Digite o nome do usuário">  
+                            <input type="email" id="perfil_email" class="form-control mt-3" value="<?php echo $email; ?>" placeholder="nome@server.com.br" maxlength="200" data-placement="top" data-toggle="tooltip" title="Digite seu e-mail">
 
                             <div class="d-flex justify-content-center">
-                                <a class='btn btn-secondary mt-3' data-toggle="modal" data-target="#myModal" data-placement="top" data-type="tooltip" title="Trocar senha">Trocar senha</a>
-                                <input type="button" value="Salvar alterações" onclick="atualizarCadastro()" class="btn btn-dark mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Atualizar Cadastro" ></input>
-                                <input type="button" value="Desativar cadastro" onclick="desativarUsuario()" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." ></input>
+                                <a class='btn btn-secondary MousePoiter text-white mt-3' data-toggle="modal" data-target="#myModal" data-placement="top" data-type="tooltip" title="Trocar senha">Trocar senha</a>
+                                <input type="button" value="Salvar alterações" onclick="atualizarCadastro('<?php echo $nome; ?>', '<?php echo $email; ?>')" class="btn btn-dark mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Atualizar Cadastro" ></input>
+                                <input type="button" value="Desativar cadastro" onclick="desativarUsuarioPerguntar('<?php echo $nome; ?>')" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." ></input>
                             </div>
                         </div>
 
@@ -54,7 +68,7 @@
 
                                         <div class="col-12 mt-3">
                                             <span>4 - Gravar nova senha</span>
-                                            <input type="button" value="Gravar" class="btn btn-warning form-control" onclick="trocarSenha()" data-placement="top" data-toggle="tooltip" title="Trocar senha">
+                                            <input type="button" value="Gravar" class="btn btn-warning form-control" onclick="trocarSenha('<?php echo $nome; ?>')" data-placement="top" data-toggle="tooltip" title="Trocar senha">
                                         </div>
                                     </div>
 

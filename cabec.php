@@ -53,7 +53,7 @@
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto text-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica (1 min por obra)">Apresentação das obras</a>
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
                                     </li>
 
                                     <li class="nav-item">
