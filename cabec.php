@@ -62,7 +62,11 @@
                                     
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Abrir Obra aleatória do Museu">Obra aleatória</a>
-                                    </li>                                    
+                                    </li>   
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
+                                    </li>                                     
                                 </ul>
 
                                 <!-- Right Side Of Navbar -->
@@ -92,7 +96,7 @@
                                             <a class="dropdown-item" href="perfil.php" data-placement="top" data-toggle="tooltip" title="Acessar suas informações">
                                                 Perfil
                                             </a>
-                                            <a class="dropdown-item" href="#" data-placement="top" data-toggle="tooltip" title="Acessar suas obras">
+                                            <a class="dropdown-item" href="minhasObras.php" data-placement="top" data-toggle="tooltip" title="Acessar suas obras">
                                                 Minhas Obras
                                             </a>
 

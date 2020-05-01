@@ -24,8 +24,8 @@
                     
                     <input type="email" id="registrar_email" class="form-control mt-3" placeholder="nome@server.com.br" maxlength="200" data-placement="top" data-toggle="tooltip" title="Digite seu e-mail">
 
-                    <input type="password" id="registrar_senha" class="form-control mt-3" placeholder="Nova Senha" maxlength="50" data-placement="top" data-toggle="tooltip" title="Defina uma senha">                        
-                    <input type="password" id="registrar_senhaConfirmar" class="form-control mt-3" placeholder="Confirmar Senha" maxlength="50" data-placement="top" data-toggle="tooltip" title="Digite novamente a senha">
+                    <input type="password" id="registrar_senha" class="form-control mt-3" placeholder="Nova Senha" maxlength="200" data-placement="top" data-toggle="tooltip" title="Defina uma senha">                        
+                    <input type="password" id="registrar_senhaConfirmar" class="form-control mt-3" placeholder="Confirmar Senha" maxlength="200" data-placement="top" data-toggle="tooltip" title="Digite novamente a senha">
                     <small class="form-text font-weight-bold" >Senha deve ter no mínimo 6 caracteres</small> 
                     
                     <input type="button" value="Efetuar Cadastro" onclick="registrar()" class="btn btn-dark btn-lg mt-3" data-placement="top" data-toggle="tooltip" title="Criar novo cadastro" ></input>
