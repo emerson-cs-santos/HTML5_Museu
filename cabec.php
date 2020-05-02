@@ -65,7 +65,7 @@
                                     </li>   
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
+                                        <a class="nav-link" href="artistas.php" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
                                     </li>                                     
                                 </ul>
 
