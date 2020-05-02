@@ -32,5 +32,9 @@ body
 .desc_fixo
 {
     resize: none;
-    height: 800px;
+}
+
+.obra
+{
+    line-height: 1.2;
 }

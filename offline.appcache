@@ -1,0 +1,19 @@
+CACHE MANIFEST
+minhaObra_digitar.php
+Imagens/icon.png
+
+
+
+NETWORK:
+php/atualizar_usuario.php
+php/cadastro_ativar_desativar.php
+php/conexao_bd.php
+php/consulta_minhas_obras.php
+php/criar_usuario.php
+php/funcoes.php
+php/sair.php
+php/sessao.php
+php/trocarSenha.php
+php/validar_login.php
+
+scripts/migration

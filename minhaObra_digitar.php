@@ -9,7 +9,7 @@ $nome       = '';
 $descri     = '';
 $duracao    = 0;
 $repetir    = 0;
-$obra       = '';
+$obra       = 'Mãos a obra!';
 $status     = '';
 $usuario_id = 0;
 
@@ -43,9 +43,122 @@ else
 //echo $ID;
 ?>  
 
-<?php
-    include('cabec.php');
-?>
+<!DOCTYPE html>
+<html lang="pt-br" manifest="offline.appcache">
+    <head>
+        <title>Museu</title>
+        <meta charset="utf-8"> 
+
+        <link href="Imagens/icon.png" rel="icon">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- Manual de uso referente aos alerts customizados "swal": https://sweetalert.js.org/guides/ -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <!-- JQUERY -->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <!-- Biblioteca de ícones -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/geral.css">
+
+        <!-- JavaScript -->
+        <script src="js/login.js"></script>
+        <script src="js/registrar.js"></script>
+        <script src="js/usuario.js"></script>
+        <script src="js/edicaoObra.js"></script>
+        <script src="js/funcoes.js"></script>
+    </head>
+
+    <body>
+        <div class='container'>
+            <header class='row'>
+                <div class="col-12">
+
+                    <nav id='navbar' class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+
+                            <a class="nav_link col-2" href='index.php'><img src='Imagens/icon.png' alt='Logo do site' style='height:100px; width:100px;' data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial"></a>
+                      
+                            <a class="navbar-brand" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
+                                Home
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                               
+                                <!-- Left Side Of Navbar -->
+                                <ul class="navbar-nav mr-auto text-center">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Listagem com todas as Obras">Todas as Obras do museu</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Abrir Obra aleatória do Museu">Obra aleatória</a>
+                                    </li>   
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
+                                    </li>                                     
+                                </ul>
+
+                                <!-- Right Side Of Navbar -->
+                                <ul class="navbar-nav ml-auto">
+                                    <!-- Authentication Links -->
+                                    <!-- Exemplo de 1 item, sem subOpção
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="#">Home</a>
+                                    </li>-->
+                                    
+                                    <li class="nav-item dropdown text-center">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre data-placement="top" data-toggle="tooltip" title="Opções do autor">
+                                            <?php
+                                                if (isset($_SESSION['controle']))
+                                                {
+                                                    $user = $_SESSION['controle'];
+                                                    echo "Bem vindo! $user";
+                                                }
+                                                else
+                                                {
+                                                    echo " Convidado ";
+                                                }
+                                            ?>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="perfil.php" data-placement="top" data-toggle="tooltip" title="Acessar suas informações">
+                                                Perfil
+                                            </a>
+                                            <a class="dropdown-item" href="minhasObras.php" data-placement="top" data-toggle="tooltip" title="Acessar suas obras">
+                                                Minhas Obras
+                                            </a>
+
+                                            <?php
+                                                if (isset($_SESSION['controle']))
+                                                {
+                                                    echo "<a class='dropdown-item' href='php/sair.php' data-placement='top' data-toggle='tooltip' title='Encerrar sessão'> Sair </a>";
+                                                }
+                                            ?>                                            
+                                        </div>                                       
+                                    </li>
+                                </ul>
+                            </div>
+                       
+                    </nav>
+
                     <h1 id='titulo' class="text-center H1_titulo mt-3">Obra</h1>
                 </div> 
             </header>
@@ -56,62 +169,73 @@ else
                     <div class='col-12'>
 
                     <div class='text-center col-12 mt-4'>
-                        <h2 class='H2_titulo'> <?php echo $acao; ?> </h2>
+                        <h2 class=''> <?php echo $acao; ?> </h2>
                     </div>                      
 
                         <form>
 
-                            <div class="form-group col-12">                               
+                            <div class="form-group col-12">
+                                
+                                <span id='minhaObra_digitar_id' hidden><?php echo $codigo; ?></span>
                                 
                                 <div class='mt-3 row'>
                                     <label for="minhaObra_digitar_nome">Nome*</label>
-                                    <input name='minhaObra_digitar_nome' type="text" class="form-control" id="minhaObra_digitar_nome" maxlength="150" placeholder="Nome da obra" data-placement="top" data-toggle="tooltip" title="Digite o nome da sua obra" value = "<?php echo $nome; ?>">
+                                    <input name='minhaObra_digitar_nome' type="text" class="form-control" id="minhaObra_digitar_nome" maxlength="150" oninput='salvarLocal()' placeholder="Nome da obra" data-placement="top" data-toggle="tooltip" title="Digite o nome da sua obra" value = "<?php echo $nome; ?>">
                                 </div>
 
                                 <div class="form-group row mt-3">
                                     <label for="minhaObra_digitar_desc">Descrição*</label>
-                                    <textarea name='minhaObra_digitar_desc' class="form-control desc_fixo" id="minhaObra_digitar_desc" rows="5" maxlength="800" placeholder = 'Descrição Obra' data-placement="top" data-toggle="tooltip" title="Digite uma descrição para sua obra"><?php echo rtrim($descri); ?></textarea>
+                                    <textarea name='minhaObra_digitar_desc' class="form-control desc_fixo" id="minhaObra_digitar_desc" rows="5" oninput='salvarLocal()' maxlength="800" placeholder = 'Descrição Obra' data-placement="top" data-toggle="tooltip" title="Digite uma descrição para sua obra"><?php echo rtrim($descri); ?></textarea>
                                 </div>
 
                                 <div class='mt-3 row'>
-                                    <label for="minhaObra_digitar_nome">Duração da obra</label>
-                                    <input name='minhaObra_digitar_nome' type="number" class="form-control" id="minhaObra_digitar_nome" maxlength="20" placeholder="60" data-placement="top" data-toggle="tooltip" title="Máximo de 60 segundos" value="<?php echo $duracao; ?>">
+                                    <label for="minhaObra_digitar_duracao">Duração da obra</label>
+                                    <input name='minhaObra_digitar_duracao' type="number" class="form-control" id="minhaObra_digitar_duracao" maxlength="20" oninput='salvarLocal()' placeholder="60" data-placement="top" data-toggle="tooltip" title="Máximo de 60 segundos" value="<?php echo $duracao; ?>">
                                 </div>
 
                                 <div class="form-check row mt-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="minhaObra_digitar_loop" name="minhaObra_digitar_loop" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente">
+                                    <input class="form-check-input" type="checkbox" value="" id="minhaObra_digitar_loop" name="minhaObra_digitar_loop" onchange="salvarLocal()" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente">
                                     <label class="form-check-label" for="minhaObra_digitar_loop" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente"> Exibir em loop </label>
-                                </div>              
+                                </div>        
                                 
                                 <div class='form-group row mt-3'>
                                     <label for="minhaObra_digitar_status">Status:</label>
-                                    <select id='minhaObra_digitar_status' name="minhaObra_digitar_status"class="form-control ativo_select" data-placement="top" data-toggle="tooltip" title="Se estiver inativo, Não será exibido para os leitores">
-                                        <option value="Ativos">Ativo</option>
-                                        <option value="Inativos">Inativo</option>
+                                    <select id='minhaObra_digitar_status' name="minhaObra_digitar_status"class="form-control ativo_select" onchange="salvarLocal()" data-placement="top" data-toggle="tooltip" title="Se estiver inativo, Não será exibido para os leitores">
+                                        <option value="ativo" selected>Ativo</option>
+                                        <option value="inativo">Inativo</option>
                                     </select>
                                 </div>
-                                
-                                <div class="form-group row mt-5">
-                                    <label>Monte sua Obra!</label>
 
-                                    <div contenteditable="true" class="form-control desc_fixo" id="produtos_digitar_descri" maxlength="2000" placeholder='Obra' name='produtos_digitar_descri'>
-                                        <?php echo rtrim($obra); ?>
-                                    </div>
+                                <div class="row mt-5">
+                                    <h3>Crie sua obra!</h3>
+                                </div>
+                                
+                                <div class="row mt-1">
+                                    <span>Você está trabalhando offline, sua obra está salva na sessão atual. Para salvar no servidor, clique em Gravar.</span>
+                                </div>                                 
+
+                                <div class='mt-5 row d-flex justify-content-center'>
+                                    <a type="button" class="btn btn-outline-dark fa fa-bold          fa-2x"      data-placement="top" data-toggle="tooltip" title="Negrito"          onclick="execCommand('bold',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-italic        fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Itálico"          onclick="execCommand('italic',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-underline     fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Sublinhado"       onclick="execCommand('underline',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-strikethrough fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Tachado"          onclick="execCommand('strikeThrough',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-tint          fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Aplicar Cor"      onclick="pegarCor()"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-align-center  fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Centralizar"      onclick="execCommand('justifyCenter',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-align-left    fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Alinhar esquerda" onclick="execCommand('justifyLeft',false,'');"></a>
+                                    <a type="button" class="btn btn-outline-dark fa fa-align-right   fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Alinhar direita"  onclick="execCommand('justifyRight',false,'');"></a>
+                                    <input type="color" name="minhaObra_digitar_cor" id="minhaObra_digitar_cor" onchange="trocarCor()" hidden >
                                 </div>
 
-                                <div class='mt-3 row'>
-                                    <input type="button" class="btn btn-primary" value="Negrito" onclick="execCommand('bold',false,'');">
-                                    <input type="button" class="btn btn-primary ml-3" value="Ítalico" onclick="execCommand('italic',false,'');">
-                                    <input type="button" class="btn btn-primary ml-3" value="Sublinhado" onclick="execCommand('underline',false,'');">
-                                </div>                                
+                                <div class="mt-3">
+                                    <div class="border border-secondary" id="minhaObra_digitar_obra" contenteditable oninput='salvarLocal()'>
+                                        <?php echo rtrim($obra); ?>
+                                    </div>
+                                </div>                          
                             </div>
                             
-                            <div>
-                                <input id='cmd_gravar' type="button" name="cmd_gravar" class="btn btn-primary btn-lg botoes_cadastro" Value='Salvar Local' data-placement="top" data-toggle="tooltip" title="Salvar informações">     
-
-                                <input id='cmd_gravar' type="button" name="cmd_gravar" class="btn btn-primary btn-lg botoes_cadastro ml-3" Value='Gravar' data-placement="top" data-toggle="tooltip" title="Salvar informações">
-
-                                <input id='cmd_voltar' type="button" name="cmd_voltar" class="btn btn-warning btn-lg botoes_cadastro ml-3" Value = 'Cancelar' data-placement="top" data-toggle="tooltip" title="As informações não serão salvas!">
+                            <div class="form-group row obra d-flex justify-content-center">
+                                <input type="button" class="btn btn-dark btn-lg ml-3"      Value='Gravar'   onclick="salvar()"   data-placement="top" data-toggle="tooltip" title="Salvar informações">
+                                <input type="button" class="btn btn-secondary btn-lg ml-3" Value='Cancelar' onclick="cancelar()" data-placement="top" data-toggle="tooltip" title="As informações não serão salvas!">
                             </div>
                         </form>
                     </div>
@@ -119,18 +243,26 @@ else
             </main>
 
             <script>
-
-                // Adiciona evento de click nos botões
-                $('#cmd_gravar').click(function()
+                document.getElementById("minhaObra_digitar_obra").addEventListener("input", function() 
                 {
-                    novo_cadastro('cadastro');
-                })    
+                    salvarLocal();
+                }, false);
 
-                $('#cmd_voltar').click(function()
+                carregarDadosSession();
+
+                window.onbeforeunload = function (e) 
                 {
-                    window.open("Usuarios.php", '_self');
-                })
+                   // limparDadosSessao();
+                    // var message = "Your confirmation message goes here.",
+                    // e = e || window.event;
+                    // // For IE and Firefox
+                    // if (e) {
+                    // e.returnValue = message;
+                    // }
 
+                    // // For Safari
+                    // return message;
+                };
             </script>               
 
         <?php

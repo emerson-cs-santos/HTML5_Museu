@@ -20,7 +20,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
         <!-- Biblioteca de ícones -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/geral.css">
@@ -29,6 +29,7 @@
         <script src="js/login.js"></script>
         <script src="js/registrar.js"></script>
         <script src="js/usuario.js"></script>
+        <script src="js/edicaoObra.js"></script>
         <script src="js/funcoes.js"></script>
     </head>
 
