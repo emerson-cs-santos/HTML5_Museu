@@ -36,7 +36,7 @@ if(!isset($duracaoObra))
 
 if(!isset($loopObra))
 {
-    $loopObra = false;
+    $loopObra = 0;
 }
 
 if(!isset($statusObra))
@@ -58,24 +58,115 @@ if ( $nomeObra == '' or $descObra == '' or $textoObra == '')
 
 include('conexao_bd.php');
 
-$codigo = 0;
-$statusObra = 'ativo';
-
-$query = " INSERT INTO usuarios ( id, nome, email, senha, ativo ) Values ( ?, ?, ?, ?, ? ) ";
-$querytratada = $conn->prepare($query); 
-$querytratada->bind_param("issss", $codigo, $userName, $email, $senha, $ativo);
-$querytratada->execute();
-
-if ($querytratada->affected_rows > 0) 
+if ($loopObra == true)
 {
-	$resposta = 'ok';
-	session_start();
-	$_SESSION['controle'] = ucwords($userName);	
+    $loopObra = 1;
+}
+else
+{
+    $loopObra = 0; 
+}
+
+session_start();
+if ( isset($_SESSION['controle']) ) 
+{
+    $login = $_SESSION['controle'];
+    
+    $query = " select id from usuarios where nome = ?";
+    $querytratada = $conn->prepare($query); 
+    $querytratada->bind_param( "s", $login );
+    $querytratada->execute();
+    $result = $querytratada->get_result();
+    
+    if( $result->num_rows > 0 )
+    {
+        $row = $result->fetch_assoc();
+        $usuario_id = $row["id"];
+    }
+    else
+    {
+        echo "erro-Problema ao encontrar usuário para salvar obra!";
+    }
 } 
-else 
+else
 {
-	echo 'problema';
-	return;
+    echo "erro-Problema ao encontrar usuário para salvar obra!";
+}
+
+$existe = false;
+
+// VERIFICA SE JÁ EXISTE
+$query = "select id from obras where id = ?";
+$querytratada = $conn->prepare($query); 
+$querytratada->bind_param("i",$codigo);
+$querytratada->execute();
+$result = $querytratada->get_result();
+
+if( $result->num_rows > 0)
+{
+	$existe = true;
+}
+
+if ($existe == true)
+{
+	// Prevenção de injection
+	$query = "	UPDATE 
+					obras 
+				SET 
+                    nome        = ?
+                    ,descri		= ?
+					,duracao	= ? 
+					,repetir    = ?
+					,obra		= ?
+					,ativo	    = ?
+				where 
+					id = ?	";	
+	$querytratada = $conn->prepare($query); 
+	$querytratada->bind_param("ssiissi", $nomeObra, $descObra, $duracaoObra, $loopObra, $textoObra, $statusObra, $codigo);
+
+	$querytratada->execute();
+	
+    preg_match_all ('/(\S[^:]+): (\d+)/', $conn->info, $querytratada);
+	$info = array_combine ($querytratada[1], $querytratada[2]);	
+	
+	// Linhas encontradas com base na condição da where
+	$linhas_encontradas = $info['Rows matched'];
+
+	// Linhas que foram alteradas, quando os dados não forem alterados, mesmo o comando estando certo, não é retornado linhas afetadas
+	$linhas_afetadas = $info['Changed'];
+
+	// Avisos de problemas
+	$avisos_problemas = $info['Warnings'];
+	
+	//if ($querytratada->affected_rows > 0) 
+	if ($linhas_encontradas == '1' and $avisos_problemas == '0')
+	{
+		$resposta = 'ok';
+	} 
+	else 
+	{
+		$resposta = 'problema';
+	}
+}
+else
+{
+    $codigo = 0;
+    $statusObra = 'ativo';
+    $usuario_id = 0;
+        
+    $query = " INSERT INTO obras ( id, nome, descri, duracao, repetir, obra, ativo, usuario_id ) Values ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
+    $querytratada = $conn->prepare($query); 
+    $querytratada->bind_param("issiissi", $codigo, $nomeObra, $descObra, $duracaoObra, $loopObra, $textoObra, $statusObra, $usuario_id );
+    $querytratada->execute();
+    
+    if ($querytratada->affected_rows > 0) 
+    {
+        $resposta = 'ok';
+    } 
+    else 
+    {
+        $resposta = 'problema';
+    }
 }
 
 // FECHA CONEXAO

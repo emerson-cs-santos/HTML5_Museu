@@ -11,7 +11,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "Problema ao encontrar cadastro!",
                 text: 'Por favor entrar em contato com o administrador do sistema!',
-                icon: "error",
+                type: "error",
                 button: "OK",
             }
         )
@@ -25,7 +25,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "Caracter(es) inválido(s)!",
                 text: 'Não é permitido o uso de caracteres especiais no Login/Usuário! Exceto " _ "',
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -39,7 +39,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "Espaço não é permitido!",
                 text: 'Não é permitido o uso espaço! Nem entre ou dentro das palavras!',
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -53,7 +53,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "Login não informado!",
                 text: "Por favor preencher o login!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -66,7 +66,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "E-mail não informado!",
                 text: "Por favor preencher o e-mail!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -80,7 +80,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
             {
                 title: "E-mail inválido!",
                 text: "Verifique o e-mail digitado!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -108,17 +108,9 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
                     {
                         title: "Tudo Certo!",
                         text: "Cadastro atualizado com sucesso!",
-                        icon: "success",
+                        type: "success",
                         button: "OK",
-                    }
-
-                    ).then
-
-                    (
-                    (swal_click) => {
-                        window.open("perfil.php", '_self');
-                    }
-                    );
+                    });
                 break;
 
             case 'erro':
@@ -126,7 +118,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
                         {
                             title: "Problema ao atualizar cadastro",
                             text: resposta_descricao,
-                            icon: "warning",
+                            type: "warning",
                             button: "OK",
                         }
                     )
@@ -137,7 +129,7 @@ function atualizarCadastro(nomeAntigo, emailAntigo)
                     {
                         title: "Problema ao atualizar Cadastro!",
                         text: "Por favor entrar em contato com o administrador do sistema!",
-                        icon: "error",
+                        type: "error",
                         button: "OK",
                     }
                 )
@@ -158,7 +150,7 @@ function desativarUsuarioPerguntar(nome)
             {
                 title: "Problema ao encontrar cadastro!",
                 text: 'Por favor entrar em contato com o administrador do sistema!',
-                icon: "error",
+                type: "error",
                 button: "OK",
             }
         )
@@ -168,23 +160,29 @@ function desativarUsuarioPerguntar(nome)
     swal({
         title: "Desativar seu usuário?",
         text: "Você pode ativar novamente fazendo login",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            desativarUsuario(nome,'desativar');
-        } else {
-            swal(
-                {
-                    title:  "Processo cancelado!",
-                    text:   'Seu usuário ainda está ativo!',
-                   
-                    button: "OK",
-                }
-            )             
-        }
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
+        closeOnConfirm: false,
+        closeOnCancel: false
+        },
+        function (isConfirm) 
+        {
+            if (isConfirm) 
+            {
+                desativarUsuario(nome,'desativar');
+            } 
+            else 
+            {
+              swal({
+                  title: "Processo cancelado!",
+                  text: "Seu usuário ainda está ativo!",
+                  type: "info",
+                  button: "OK",
+              })
+            }
         });
 }
 
@@ -197,7 +195,7 @@ function desativarUsuario(nome, tipo)
             {
                 title: "Problema ao encontrar cadastro!",
                 text: 'Por favor entrar em contato com o administrador do sistema!',
-                icon: "error",
+                type: "error",
                 button: "OK",
             }
         )
@@ -248,14 +246,10 @@ function desativarUsuario(nome, tipo)
                     {
                         title: okTitle,
                         text: okText,
-                        icon: "success",
+                        type: "success",
                         button: "OK",
-                    }
-
-                    ).then
-
-                    (
-                    (swal_click) => {
+                    }, function() 
+                    {
                         if (tipo == 'ativar')
                         {
                             login();
@@ -264,8 +258,7 @@ function desativarUsuario(nome, tipo)
                         {
                             window.open("index.php", '_self');
                         }
-                    }
-                    );
+                    });
                 break;
 
             case 'erro':
@@ -273,7 +266,7 @@ function desativarUsuario(nome, tipo)
                         {
                             title: erroTitle,
                             text: resposta_descricao,
-                            icon: "warning",
+                            type: "warning",
                             button: "OK",
                         }
                     )
@@ -284,7 +277,7 @@ function desativarUsuario(nome, tipo)
                     {
                         title: defaultTitle,
                         text: "Por favor entrar em contato com o administrador do sistema!",
-                        icon: "error",
+                        type: "error",
                         button: "OK",
                     }
                 )
@@ -313,7 +306,7 @@ function trocarSenha(nome)
             {
                 title: "Problema ao encontrar cadastro!",
                 text: 'Por favor entrar em contato com o administrador do sistema!',
-                icon: "error",
+                type: "error",
                 button: "OK",
             }
         )
@@ -326,7 +319,7 @@ function trocarSenha(nome)
             {
                 title: "Campo não informado!",
                 text: "Por favor preencher a senha atual!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -339,7 +332,7 @@ function trocarSenha(nome)
             {
                 title: "Campo não informado!",
                 text: "Por favor preencher a nova senha!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -352,7 +345,7 @@ function trocarSenha(nome)
             {
                 title: "Campo não informado!",
                 text: "Por favor preencher a confirmação da senha!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -380,17 +373,12 @@ function trocarSenha(nome)
                     {
                         title: "Tudo Certo!",
                         text: "Senha atualizada com sucesso!",
-                        icon: "success",
+                        type: "success",
                         button: "OK",
-                    }
-
-                    ).then
-
-                    (
-                    (swal_click) => {
+                    }, function() 
+                    {
                         window.open("perfil.php", '_self');
-                    }
-                    );
+                    })
                 break;
 
             case 'erro':
@@ -398,7 +386,7 @@ function trocarSenha(nome)
                         {
                             title: "Problema ao atualizar senha",
                             text: resposta_descricao,
-                            icon: "warning",
+                            type: "warning",
                             button: "OK",
                         }
                     )
@@ -409,7 +397,7 @@ function trocarSenha(nome)
                     {
                         title: "Problema ao atualizar senha!",
                         text: "Por favor entrar em contato com o administrador do sistema!",
-                        icon: "error",
+                        type: "error",
                         button: "OK",
                     }
                 )

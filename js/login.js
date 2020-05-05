@@ -15,7 +15,7 @@ function login()
             {
                 title: "Login não informado!",
                 text: "Por favor preencher o login!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -28,7 +28,7 @@ function login()
             {
                 title: "Senha não preenchida!",
                 text: "Por favor preencher a senha!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -61,7 +61,7 @@ function login()
                             {
                                 title: "Login não autorizado!",
                                 text: resposta_descricao,
-                                icon: "warning",
+                                type: "warning",
                                 button: "OK",
                             }
                         )
@@ -72,24 +72,30 @@ function login()
                     swal({
                         title: "Ativar seu usuário?",
                         text: "Você voltará a ter acesso a suas obras e elas voltaram a ser exibidas no site.",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                        if (willDelete) {
-                            desativarUsuario(login,'ativar');
-                        } else {
-                            swal(
-                                {
-                                    title:  "Processo cancelado!",
-                                    text:   'Seu usuário ainda está inativo!',
-                                   
-                                    button: "OK",
-                                }
-                            )             
-                        }
-                        })
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Sim, por favor",
+                        cancelButtonText: "Não, manter inativo",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                        },
+                        function (isConfirm) 
+                        {
+                            if (isConfirm) 
+                            {
+                                desativarUsuario(login,'ativar');
+                            } 
+                            else 
+                            {
+                              swal({
+                                  title: "Processo cancelado!",
+                                  text: "Seu usuário ainda está inativo!",
+                                  type: "info",
+                                  button: "OK",
+                              })
+                            }
+                        });
                     break;                
 
                 default:
@@ -97,7 +103,7 @@ function login()
                         {
                             title: "Problemas com login!",
                             text: "Por favor entrar em contato com o administrador do sistema!",
-                            icon: "error",
+                            type: "error",
                             button: "OK",
                         }
                     )

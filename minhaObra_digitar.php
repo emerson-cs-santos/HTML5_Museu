@@ -40,32 +40,38 @@ else
     $acao='INCLUIR';
 }
 
-//echo $ID;
 ?>  
 
 <!DOCTYPE html>
 <html lang="pt-br" manifest="offline.appcache">
-    <head>
+<head>
         <title>Museu</title>
         <meta charset="utf-8"> 
 
         <link href="Imagens/icon.png" rel="icon">
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+        <script src="js/jquery-3.3.1.slim.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 
         <!-- Manual de uso referente aos alerts customizados "swal": https://sweetalert.js.org/guides/ -->
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+        <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+        <script src="js/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="css/sweetalert.css">
+        
         <!-- JQUERY -->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+        <script src="js/jquery-3.3.1.js"></script>
 
         <!-- Biblioteca de ícones -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/geral.css">
@@ -78,7 +84,7 @@ else
         <script src="js/funcoes.js"></script>
     </head>
 
-    <body>
+    <body onload="salvarLocal()">
         <div class='container'>
             <header class='row'>
                 <div class="col-12">
@@ -101,14 +107,6 @@ else
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
                                     </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Listagem com todas as Obras">Todas as Obras do museu</a>
-                                    </li>
-                                    
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Abrir Obra aleatória do Museu">Obra aleatória</a>
-                                    </li>   
                                     
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
@@ -156,7 +154,6 @@ else
                                     </li>
                                 </ul>
                             </div>
-                       
                     </nav>
 
                     <h1 id='titulo' class="text-center H1_titulo mt-3">Obra</h1>
@@ -214,15 +211,15 @@ else
                                     <span>Você está trabalhando offline, sua obra está salva na sessão atual. Para salvar no servidor, clique em Gravar.</span>
                                 </div>                                 
 
-                                <div class='mt-5 row d-flex justify-content-center'>
-                                    <a type="button" class="btn btn-outline-dark fa fa-bold          fa-2x"      data-placement="top" data-toggle="tooltip" title="Negrito"          onclick="execCommand('bold',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-italic        fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Itálico"          onclick="execCommand('italic',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-underline     fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Sublinhado"       onclick="execCommand('underline',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-strikethrough fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Tachado"          onclick="execCommand('strikeThrough',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-tint          fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Aplicar Cor"      onclick="pegarCor()"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-align-center  fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Centralizar"      onclick="execCommand('justifyCenter',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-align-left    fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Alinhar esquerda" onclick="execCommand('justifyLeft',false,'');"></a>
-                                    <a type="button" class="btn btn-outline-dark fa fa-align-right   fa-2x ml-3" data-placement="top" data-toggle="tooltip" title="Alinhar direita"  onclick="execCommand('justifyRight',false,'');"></a>
+                                <div class='mt-5 row d-flex justify-content-center'>        
+                                    <a type="button" class="btn btn-outline-dark botao_obra"       data-placement="top" data-toggle="tooltip" title="Negrito"          onclick="execCommand('bold',false,'');">            <img src="Imagens/bold.png" alt="Negrito" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Itálico"          onclick="execCommand('italic',false,'');">          <img src="Imagens/italic.png" alt="Itálico" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Sublinhado"       onclick="execCommand('underline',false,'');">       <img src="Imagens/underline.png" alt="Sublinhado" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Tachado"          onclick="execCommand('strikeThrough',false,'');">   <img src="Imagens/strikethrough.png" alt="Tachado" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Aplicar Cor"      onclick="pegarCor()">                               <img src="Imagens/tint.png" alt="Aplicar Cor" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Centralizar"      onclick="execCommand('justifyCenter',false,'');">   <img src="Imagens/align-center.png" alt="Centralizar" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Alinhar esquerda" onclick="execCommand('justifyLeft',false,'');">     <img src="Imagens/align-left.png" alt="Alinhar esquerda" class="imgBotao"> </a>
+                                    <a type="button" class="btn btn-outline-dark botao_obra ml-3"  data-placement="top" data-toggle="tooltip" title="Alinhar direita"  onclick="execCommand('justifyRight',false,'');">    <img src="Imagens/align-right.png" alt="Alinhar direita" class="imgBotao"> </a>
                                     <input type="color" name="minhaObra_digitar_cor" id="minhaObra_digitar_cor" onchange="trocarCor()" hidden >
                                 </div>
 
@@ -252,16 +249,7 @@ else
 
                 window.onbeforeunload = function (e) 
                 {
-                   // limparDadosSessao();
-                    // var message = "Your confirmation message goes here.",
-                    // e = e || window.event;
-                    // // For IE and Firefox
-                    // if (e) {
-                    // e.returnValue = message;
-                    // }
-
-                    // // For Safari
-                    // return message;
+                   limparDadosSessao();
                 };
             </script>               
 

@@ -38,3 +38,36 @@ body
 {
     line-height: 1.2;
 }
+
+.imgBotao
+{
+    height: 30px;
+    width: 30px;
+    padding-right: 20%;
+    padding-top: 10%;
+}
+
+.botao_obra
+{
+    height: 50px;
+    width: 50px;     
+}
+
+.Status_Ativo
+{
+    color: black;
+    font-size: 20px;
+}
+
+.Status_Inativo
+{
+    background-color: #ffffe0;
+    text-decoration: line-through;
+    font-size: 20px;
+}
+
+.table_format
+{
+    text-align: center; 
+    background-color: white;
+}

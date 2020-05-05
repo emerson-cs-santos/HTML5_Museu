@@ -15,6 +15,11 @@ function carregarDadosSession()
 {
     const dadosCarregar = sessionStorage.getItem("obra_dados");
 
+    if (dadosCarregar == null)
+    {
+        return false;
+    }
+
     if (! dadosCarregar.length == 0)
     {
         const dados = JSON.parse( sessionStorage.getItem("obra_dados") );
@@ -50,7 +55,22 @@ function salvarLocal()
 // Salvar no banco de dados
 function salvar() 
 {
+    salvarLocal();
+
     const dadosSalvar = sessionStorage.getItem("obra_dados");
+
+    if (dadosSalvar == null)
+    {
+        swal(
+            {
+                title: "Informações não preenchidas!",
+                text: 'Por favor preencher os campos da obra',
+                type: "info",
+                button: "OK",
+            }
+        )
+        return false;
+    }    
 
      // Validar dados no php e retonar com erro-Mensagem
 
@@ -74,27 +94,22 @@ function salvar()
                 swal(
                     {
                         title: "Tudo Certo!",
-                        text: "Obra cadastrada com sucesso!",
-                        icon: "success",
+                        text: "Obra inclusa/atualizada com sucesso!",
+                        type: "success",
                         button: "OK",
-                    }
-
-                    ).then
-
-                    (
-                    (swal_click) => {
+                    }, function() 
+                    {
                         limparDadosSessao();
                         window.open("minhasObras.php", '_self');
-                    }
-                    );
+                    });
                 break;
 
             case 'erro':
                 swal(
                         {
-                            title: "Não foi possivel incluir a Obra!",
+                            title: "Não foi possivel incluir/atualizar a Obra!",
                             text: resposta_descricao,
-                            icon: "warning",
+                            type: "warning",
                             button: "OK",
                         }
                     )
@@ -103,9 +118,9 @@ function salvar()
             default:
                 swal(
                     {
-                        title: "Problema ao incluir Obra!",
+                        title: "Problema ao incluir/atualizar a Obra!",
                         text: "Por favor entrar em contato com o administrador do sistema!",
-                        icon: "error",
+                        type: "error",
                         button: "OK",
                     }
                 )
@@ -117,6 +132,89 @@ function salvar()
    xmlhttp.setRequestHeader("Content-type", "application/json");
    xmlhttp.send(dadosSalvar);
 }
+
+function desativar(ID_para_desativar) 
+{
+    var desativar = "codigo=" + encodeURIComponent(ID_para_desativar);
+
+   // AJAX
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            
+            var resposta = this.responseText;
+            
+            // Tirando ENTER
+            resposta = resposta.replace(/(\r\n|\n|\r)/gm, "");
+            
+            switch (resposta)
+			{
+				case 'ativo':
+                    swal(
+                        {
+                            title:  "Obra foi Ativada!",
+                            text:   'Obra pode ser visualizada por todos!',
+                            type:   "success",
+                            button: "OK",
+                        }
+                    );
+                break;
+
+                case 'inativo':
+                    swal(
+                        {
+                            title:  "Obra foi Inativada!",
+                            text:   'Obra não pode mais ser visualizada por todos!',
+                            type:   "success",
+                            button: "OK",
+                        }
+                    );                 
+                break;
+					
+				 default:
+                    swal(
+                        {
+                            title:  "Problemas ao inativar ou ativar!",
+                            text:   "Por favor entrar em contato com o administrador do sistema!",
+                            type:   "error",
+                            button: "OK",
+                        }
+                    )                    
+			}
+            
+            // Ajax com Jquery e está refazendo apenas a tabela 
+            $.post('php/consulta_minhas_obras.php',desativar, function(data)
+            {
+                $('#table_consulta_minhas_obras').html(data);
+            }
+        )  		
+			
+        }      
+    }
+    // MODO POST
+    xmlhttp.open("POST", "php/desativar.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  
+    xmlhttp.send(desativar);
+}
+
+function filtrarMinhasObras() 
+{  ;
+    const filtro_nome    = document.getElementById("minhas_obras_filtro_nome").value;
+    const filtro_desc    = document.getElementById("minhas_obras_filtro_desc").value;
+    const filtro_status   = document.getElementById("minhas_obras_filtro_status").value;
+
+    var parametros = "filtro_nome=" + encodeURIComponent(filtro_nome) + "&filtro_desc=" + encodeURIComponent(filtro_desc) + "&filtro_status=" + encodeURIComponent(filtro_status);
+    
+    // Ajax com Jquery e está refazendo apenas a tabela 
+    $.post('php/consulta_minhas_obras.php',parametros, function(data)
+        {
+            $('#table_consulta_minhas_obras').html(data);
+        }
+    )
+}
+
 
 function cancelar() 
 {
