@@ -4,7 +4,7 @@ include('PHP'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
 ?>
 <link rel="stylesheet" href="css/artistas.css">
 
-<h1 class="text-center mt-5" id="titulo">Artistas</h1>
+<h1 class="text-center mt-3" id="titulo">Artistas</h1>
 </div>
 </header>
 
