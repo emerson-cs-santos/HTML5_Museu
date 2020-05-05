@@ -84,8 +84,8 @@
 			echo "<tr>";
 			echo "<th>Obra</th>";
 			echo "<th>Alterar</th>";
-			echo "<th>Descrição</th>";
-			echo "<th>Desativar</th>";
+			// echo "<th>Descrição</th>";
+			// echo "<th>Desativar</th>";
 			echo "</tr>";
 
 			echo '</thead>';
@@ -118,8 +118,8 @@
 					echo "<td>" . $row["nome"] . "</td>";
 					echo "<td>" . $row["descri"] . "</td>";
 					
-					echo " <td class='Status_Ativo'> <a type='button' class='btn btn-primary fa fa-pencil fa-2x botoes_grade' data-placement='top' data-toggle='tooltip' title='Alterar obra' href='Usuarios_digitar.php?ID={$row["id"]}'>	</a> </td>";
-					echo " <td class='Status_Ativo'> <a type='button' class='btn $Cor_botao_inativar fa fa-warning fa-2x botoes_grade' data-placement='top' data-toggle='tooltip' title='$ToolTipText_inativar' onclick='desativar({$row["id"]})' ></a> </td>";
+					echo " <td class='Status_Ativo'> <a type='button' class='btn btn-primary botoes_grade d-flex justify-content-center' data-placement='top' data-toggle='tooltip' title='Alterar obra' href='Usuarios_digitar.php?ID={$row["id"]}'>	Alterar</a> </td>";
+					echo " <td class='Status_Ativo'> <a type='button' class='btn $Cor_botao_inativar botoes_grade d-flex justify-content-center' data-placement='top' data-toggle='tooltip' title='$ToolTipText_inativar' onclick='desativar({$row["id"]})' >Desativar</a> </td>";
 
 					echo "</tr>";			
 				}
