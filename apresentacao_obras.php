@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('cabec.php');
 ?>           
                     <h1 class="text-center mt-5">Obras do Museu</h1>
