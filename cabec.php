@@ -62,7 +62,7 @@
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto text-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
+                                        <a class="nav-link" href="apresentacao_obras.php" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
                                     </li>
                                     
                                     <li class="nav-item">
@@ -79,7 +79,7 @@
                                     </li>-->
                                     
                                     <li class="nav-item dropdown text-center">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre data-placement="top" data-toggle="tooltip" title="Opções do autor">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <?php
                                                 if (isset($_SESSION['controle']))
                                                 {

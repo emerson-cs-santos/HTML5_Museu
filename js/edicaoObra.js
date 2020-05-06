@@ -224,5 +224,6 @@ function cancelar()
 
 function limparDadosSessao() 
 {
+    sessionStorage.clear();
     sessionStorage.setItem("obra_dados", '');
 }

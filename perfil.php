@@ -33,8 +33,8 @@
 
                             <div class="d-flex justify-content-center">
                                 <a class='btn btn-secondary MousePoiter text-white mt-3' data-toggle="modal" data-target="#myModal" data-placement="top" data-type="tooltip" title="Trocar senha">Trocar senha</a>
-                                <input type="button" value="Salvar alterações" onclick="atualizarCadastro('<?php echo $nome; ?>', '<?php echo $email; ?>')" class="btn btn-dark mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Atualizar Cadastro" ></input>
-                                <input type="button" value="Desativar cadastro" onclick="desativarUsuarioPerguntar('<?php echo $nome; ?>')" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." ></input>
+                                <input type="button" value="Salvar alterações" onclick="atualizarCadastro('<?php echo $nome; ?>', '<?php echo $email; ?>')" class="btn btn-dark mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Atualizar Cadastro" >
+                                <input type="button" value="Desativar cadastro" onclick="desativarUsuarioPerguntar('<?php echo $nome; ?>')" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." >
                             </div>
                         </div>
 

@@ -151,8 +151,7 @@ if ($existe == true)
 else
 {
     $codigo = 0;
-    $statusObra = 'ativo';
-    $usuario_id = 0;
+    //$statusObra = 'ativo';
         
     $query = " INSERT INTO obras ( id, nome, descri, duracao, repetir, obra, ativo, usuario_id ) Values ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
     $querytratada = $conn->prepare($query); 
