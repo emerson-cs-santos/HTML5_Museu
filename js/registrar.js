@@ -19,7 +19,7 @@ function registrar()
             {
                 title: "Senha inválida!",
                 text: 'Tamanho mínimo da senha é de 6 caracteres!',
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -33,7 +33,7 @@ function registrar()
             {
                 title: "Caracter(es) inválido(s)!",
                 text: 'Não é permitido o uso de caracteres especiais no Login/Usuário! Exceto " _ "',
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -47,7 +47,7 @@ function registrar()
             {
                 title: "Espaço não é permitido!",
                 text: 'Não é permitido o uso espaço! Nem entre ou dentro das palavras!',
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -61,7 +61,7 @@ function registrar()
             {
                 title: "Login não informado!",
                 text: "Por favor preencher o login!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -74,7 +74,7 @@ function registrar()
             {
                 title: "E-mail não informado!",
                 text: "Por favor preencher o e-mail!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -87,7 +87,7 @@ function registrar()
             {
                 title: "Campos de senha não preenchidos!",
                 text: "Por favor preencher ambos campos da senha!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -101,7 +101,7 @@ function registrar()
             {
                 title: "Senhas não conferem!",
                 text: "Senhas digitadas têm que ser iguais!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -115,7 +115,7 @@ function registrar()
             {
                 title: "E-mail inválido!",
                 text: "Verifique o e-mail digitado!",
-                icon: "warning",
+                type: "warning",
                 button: "OK",
             }
         )
@@ -143,17 +143,12 @@ function registrar()
                     {
                         title: "Tudo Certo!",
                         text: "Cadastro efetuado com sucesso!",
-                        icon: "success",
+                        type: "success",
                         button: "OK",
-                    }
-
-                    ).then
-
-                    (
-                    (swal_click) => {
+                    }, function() 
+                    {
                         window.open("perfil.php", '_self');
-                    }
-                    );
+                    });
                 break;
 
             case 'erro':
@@ -161,7 +156,7 @@ function registrar()
                         {
                             title: "Problema ao registrar",
                             text: resposta_descricao,
-                            icon: "warning",
+                            type: "warning",
                             button: "OK",
                         }
                     )
@@ -172,7 +167,7 @@ function registrar()
                     {
                         title: "Problema ao efetuar Cadastro!",
                         text: "Por favor entrar em contato com o administrador do sistema!",
-                        icon: "error",
+                        type: "error",
                         button: "OK",
                     }
                 )

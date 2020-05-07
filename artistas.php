@@ -4,7 +4,7 @@ include('PHP'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
 ?>
 <link rel="stylesheet" href="css/artistas.css">
 
-<h1 class="text-center mt-3" id="titulo">Artistas</h1>
+<h1 class="text-center mt-3 titulo">Artistas</h1>
 </div>
 </header>
 
@@ -25,10 +25,10 @@ include('PHP'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
                 <div class="card" style="width: 80%;">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo $nome?></h2>
-                        <p class="card-text" id="email"><?php echo $email?></p>
+                        <p class="card-text"><?php echo $email?></p>
                     </div>
                     <div class="card-body">
-                        <a class="btn btn-primary btn-sm card-link " style="color:#ffffff" href="visualizar_perfil.php?id=<?php echo $id ?>">Visualizar Perfil</i></a>
+                        <a class="btn btn-primary btn-sm card-link " style="color:#ffffff" href="visualizar_perfil.php?id=<?php echo $id ?>">Visualizar Perfil</a>
                     </div>
                 </div>
             </div>

@@ -7,11 +7,3 @@
     cursor: pointer;
     margin: 30px;
 }
-
-#titulo {
-    font-size: 40px;
-    text-align: center;
-    padding: 1rem;
-    color: rgb(46, 152, 240);
-    text-shadow: 2px 3px 1px #474747;
-}
