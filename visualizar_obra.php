@@ -23,6 +23,7 @@ while ($array = mysqli_fetch_array($busca)) {
         $nome = $array['nome'];
         $descri = $array['descri'];
         $duracao = $array['duracao'];
+        $repetir = $array['repetir'];
         $obra = $array['obra'];
         $ativo = $array['ativo'];
 
@@ -31,7 +32,7 @@ while ($array = mysqli_fetch_array($busca)) {
                 <div class="row">
                         <div class="col-lg-8">
                                 <!-- Titulo -->
-                                <h1 class="mt-4"><?php echo $nome ?></h1>
+                                <h1 style="text-align:center" class="mt-4"><?php echo $nome ?></h1>
                                 <!-- Autor -->
                                 <?php
                                 $sql = "SELECT * FROM `usuarios` WHERE id = $id";
@@ -41,17 +42,17 @@ while ($array = mysqli_fetch_array($busca)) {
                                         $id = $array['id'];
                                         $nome = $array['nome'];
                                 ?>
-                                        <p class="lead">
+                                        <p style="text-align:center" class="lead">
                                                 Autor:
                                                 <a href="visualizar_perfil.php?id=<?php echo $id ?>"><?php echo $nome ?></a>
                                         </p>
                                 <?php } ?>
                                 <hr>
                                 <!-- Duração da Obra -->
-                                <p>Duração: <?php echo $duracao ?> seg</p>
+                                <p style="text-align:center">Duração: <?php echo $duracao ?> seg</p>
                                 <hr>
                                 <!-- Obra -->
-                                <p><?php echo $obra ?></p>
+                                <p id='obra'><?php echo $obra ?></p>
                                 <hr>
                         </div>
                         <!-- Sidebar Descrição -->
@@ -71,6 +72,25 @@ while ($array = mysqli_fetch_array($busca)) {
 <?php
 include('footer.php');
 ?>
+<script>
+if($repetir = 1) {     
+        function typeWriter(elemento) {
+                const textoArray = elemento.innerHTML.split('');
+                elemento.innerHTML = '';
+                for (let i = 0; i < textoArray.length; i++) {
+                        setTimeout(() => elemento.innerHTML+= textoArray[i], 15 * i);          
+                }        
+        }
+        
+        let escreverObra = document.getElementById('obra');
+        typeWriter(escreverObra);
+        setInterval(() => { typeWriter(escreverObra)}, 10000); 
+}else {
+        let escreverObra = document.getElementById('obra');
+        typeWriter(escreverObra);
+}
+        
+</script>
 </body>
 
 </html>
