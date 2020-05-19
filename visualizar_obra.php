@@ -3,6 +3,7 @@ include('cabec.php');
 include('PHP' . DIRECTORY_SEPARATOR . 'conexao_bd.php');
 $id = $_GET['id'];
 ?>
+</div>
 </header>
 <?php
 $sql = "SELECT * FROM `usuarios` WHERE id = $id";
@@ -72,24 +73,48 @@ while ($array = mysqli_fetch_array($busca)) {
 <?php
 include('footer.php');
 ?>
+</div>
+
 <script>
-if($repetir = 1) {     
-        function typeWriter(elemento) {
-                const textoArray = elemento.innerHTML.split('');
-                elemento.innerHTML = '';
-                for (let i = 0; i < textoArray.length; i++) {
-                        setTimeout(() => elemento.innerHTML+= textoArray[i], 15 * i);          
-                }        
+        if ($repetir = 1) {
+                function typeWriter(elemento) {
+                        const textoArray = elemento.innerHTML.split('');
+                        var textoArrayFiltro = [];
+                        var tempText = "";
+                        var encontrouTag = false;
+                        for (let i = 0; i < textoArray.length; i++) {
+                                if (textoArray[i] != '<' && encontrouTag == false) {
+                                        textoArrayFiltro.push(textoArray[i]);
+                                } else if (textoArray[i] == '<') {
+                                        encontrouTag = true;
+                                        tempText += textoArray[i];
+                                } else if (textoArray[i] != '>') {
+                                        tempText += textoArray[i];
+                                } else if (textoArray[i] == '>') {
+                                        encontrouTag = false;
+                                        tempText += textoArray[i];
+                                        textoArrayFiltro.push(tempText);
+                                        tempText = "";
+                                }
+                        }
+                        elemento.innerHTML = "";
+                        var texto = "";
+                        for (let i = 0; i < textoArrayFiltro.length; i++) {
+                                setTimeout(() => {
+                                        texto += textoArrayFiltro[i];
+                                        elemento.innerHTML = texto
+                                }, 20 * i);
+                        }
+                }
+                const escreverObra = document.getElementById('obra');
+                typeWriter(escreverObra);
+                setInterval(() => {
+                        typeWriter(escreverObra)
+                }, 20000);
+        } else {
+                const escreverObra = document.getElementById('obra');
+                typeWriter(escreverObra);
         }
-        
-        let escreverObra = document.getElementById('obra');
-        typeWriter(escreverObra);
-        setInterval(() => { typeWriter(escreverObra)}, 10000); 
-}else {
-        let escreverObra = document.getElementById('obra');
-        typeWriter(escreverObra);
-}
-        
 </script>
 </body>
 
