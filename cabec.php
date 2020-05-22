@@ -26,12 +26,19 @@
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
         <script src="js/jquery-3.3.1.js"></script>
 
+        <!-- Ativar modo Mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">         
+
         <!-- Biblioteca de ícones -->
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
         <!-- <link rel="stylesheet" href="css/font-awesome.min.css">  -->
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/geral.css">
+        <link rel="stylesheet" href="css/artistas.css">
+        <link rel="stylesheet" href="css/mobile.css">
+        <link rel="stylesheet" href="css/_cursor.css">
+        <link rel="stylesheet" href="css/show_obras.css">
 
         <!-- JavaScript -->
         <script src="js/login.js"></script>
@@ -39,6 +46,8 @@
         <script src="js/usuario.js"></script>
         <script src="js/edicaoObra.js"></script>
         <script src="js/funcoes.js"></script>
+
+        <script src="js/typewriting.js"></script>
     </head>
 
     <body>
@@ -46,15 +55,15 @@
             <header class='row'>
                 <div class="col-12">
 
-                    <nav id='navbar' class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+                    <nav id='navbar' class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
 
                             <a class="nav_link col-2" href='index.php'><img src='Imagens/icon.png' alt='Logo do site' style='height:100px; width:100px;' data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial"></a>
                       
-                            <a class="navbar-brand" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
+                            <a class="navbar-brand p-4 col-3" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
                                 Home
                             </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-                                <span class="navbar-toggler-icon"></span>
+                            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                <span class='navbar-toggler-icon'></span>
                             </button>
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -62,11 +71,15 @@
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto text-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="apresentacao_obras.php" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
+                                        <a class="nav-link" href="show_obras.php" data-placement="top" data-toggle="tooltip" title="Exibição simples das obras">Obras</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="apresentacao_obras.php" data-placement="top" data-toggle="tooltip" title="Lista com todas as obras">Lista das Obras</a>
                                     </li>
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
+                                        <a class="nav-link" href="artistas.php" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
                                     </li>                                     
                                 </ul>
 

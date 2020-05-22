@@ -2,6 +2,11 @@
 include('php' . DIRECTORY_SEPARATOR . 'sessao.php');
 $ID = $_GET['ID'];
 
+if(!isset($ID))
+{
+    $ID = 0;
+}
+
 $acao       = '';
 
 $codigo     = 0;
@@ -12,6 +17,8 @@ $repetir    = 0;
 $obra       = 'Mãos a obra!';
 $status     = '';
 $usuario_id = 0;
+
+$loop = '';
 
 if($ID > 0)
 {
@@ -38,6 +45,11 @@ if($ID > 0)
 else
 {
     $acao='INCLUIR';
+}
+
+if( $repetir == 1 ) 
+{
+    $loop = 'checked';
 }
 
 ?>  
@@ -70,11 +82,14 @@ else
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
         <script src="js/jquery-3.3.1.js"></script>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+
         <!-- Biblioteca de ícones -->
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/geral.css">
+        <link rel="stylesheet" href="css/mobile.css">
 
         <!-- JavaScript -->
         <script src="js/edicaoObra.js"></script>
@@ -89,7 +104,7 @@ else
 
                             <a class="nav_link col-2" href='index.php'><img src='Imagens/icon.png' alt='Logo do site' style='height:100px; width:100px;' data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial"></a>
                       
-                            <a class="navbar-brand" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
+                            <a class="navbar-brand p-4 col-3" href="index.php" data-placement="top" data-toggle="tooltip" title="Voltar a tela inicial">
                                 Home
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
@@ -101,12 +116,16 @@ else
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto text-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="apresentacao_obras.php" data-placement="top" data-toggle="tooltip" title="Exibição dinâmica">Apresentação das obras</a>
+                                        <a class="nav-link" href="show_obras.php" data-placement="top" data-toggle="tooltip" title="Exibição simples das obras">Obras</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="apresentacao_obras.php" data-placement="top" data-toggle="tooltip" title="Lista com todas as obras">Lista das Obras</a>
                                     </li>
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
-                                    </li>                                     
+                                        <a class="nav-link" href="artistas.php" data-placement="top" data-toggle="tooltip" title="Lista dos artistas do Museu">Artistas</a>
+                                    </li>                                      
                                 </ul>
 
                                 <!-- Right Side Of Navbar -->
@@ -182,13 +201,13 @@ else
                                 </div>
 
                                 <div class='mt-3 row'>
-                                    <label for="minhaObra_digitar_duracao">Duração da obra</label>
-                                    <input name='minhaObra_digitar_duracao' type="range" class="form-control slider" id="minhaObra_digitar_duracao" min="0" max="20" oninput='salvarLocal()' onchange="updateTextInput(this.value);" data-placement="top" data-toggle="tooltip" title="Máximo de 60 segundos" value="<?php echo $duracao; ?>">
+                                    <label for="minhaObra_digitar_duracao">Duração aproximada da obra</label>
+                                    <input name='minhaObra_digitar_duracao' type="range" class="form-control slider" id="minhaObra_digitar_duracao" min="0" max="60" oninput='salvarLocal()' onchange="updateTextInput(this.value);" data-placement="top" data-toggle="tooltip" title="Máximo de 60 segundos" value="<?php echo $duracao; ?>">
                                     <span id="minhaObra_digitarTempo">0 Segundos</span>
                                 </div>
 
                                 <div class="form-check row mt-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="minhaObra_digitar_loop" name="minhaObra_digitar_loop" onchange="salvarLocal()" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente">
+                                    <input class="form-check-input" type="checkbox" id="minhaObra_digitar_loop" <?php echo $loop  ?>  name="minhaObra_digitar_loop" onchange="salvarLocal()" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente">
                                     <label class="form-check-label" for="minhaObra_digitar_loop" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente"> Exibir em loop </label>
                                 </div>        
                                 
@@ -234,6 +253,7 @@ else
                         </form>
                     </div>
                 </section>
+                
             </main>
 
             <script>
@@ -255,8 +275,14 @@ else
                 function updateTextInput(val) 
                 {
                     document.getElementById('minhaObra_digitarTempo').innerHTML=val + " Segundos"; 
-                }      
-                             
+                }
+
+                if (sessionStorage.getItem("reload" ) == 'ok')
+                {
+                    alert('Iniciando modo de edição');
+                    sessionStorage.setItem("reload", '' );
+                    location.reload(true);
+                }           
             </script>               
 
         <?php

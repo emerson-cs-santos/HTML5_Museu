@@ -3,6 +3,6 @@
 
     if (!isset($_SESSION['controle'])) 
     {
-        header('Location: Login.php');
+        header('Location: login.php');
     } 
 ?>

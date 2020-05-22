@@ -2,6 +2,9 @@ CACHE MANIFEST
 # v1.0 : 04/05/2020
 # v1.1 : 05/05/2020
 # v1.2 : 05/05/2020
+# v1.3 : 08/05/2020
+
+# up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-up-[up]
 
 # pages
 minhaObra_digitar.php
@@ -10,6 +13,7 @@ minhaObra_digitar.php
 css/bootstrap.min.css
 css/geral.css
 css/sweetalert.css
+css/mobile.css
 
 # scripts
 js/edicaoObra.js

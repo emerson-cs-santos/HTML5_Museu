@@ -1,6 +1,15 @@
 <?php
-    include('php/sessao.php');
+    include('php' . DIRECTORY_SEPARATOR . 'sessao.php');
     include('cabec.php');
+
+    // //read the entire string
+    // $str=file_get_contents('offline.appcache');
+
+    // //replace something in the file string - this is a VERY simple example
+    // $str=str_replace('[up]', 'up-[up]',$str);
+
+    // //write the entire string
+    // file_put_contents('offline.appcache', $str);  
 ?>  
 
                     <h1 class="text-center mt-5">Suas Obras</h1>
@@ -25,15 +34,15 @@
                             <span class='font-weight-bold'>Filtros:</span>
                         </div>    
 
-                        <div class='form-group row mt-3 col-6'>
-                            <input type="text" id='minhas_obras_filtro_nome' class="form-control col-9" oninput='filtrarMinhasObras()' placeholder="Digita uma obra...">
+                        <div class='form-group row mt-3 col-8'>
+                            <input type="text" id='minhas_obras_filtro_nome' class="form-control col-9" oninput='filtrarMinhasObras()' placeholder="Digite uma obra...">
                         </div>  
 
-                        <div class='form-group row mt-3 col-8'>
-                            <input  type="text" id='minhas_obras_filtro_desc' class="form-control col-9" oninput='filtrarMinhasObras()' placeholder="Digita uma descrição de uma obra...">
+                        <div class='form-group row mt-3 col-10'>
+                            <input  type="text" id='minhas_obras_filtro_desc' class="form-control col-9" oninput='filtrarMinhasObras()' placeholder="Digite uma descrição de uma obra...">
                         </div>                                                
 
-                        <div class='form-group row mt-3 col-4'>
+                        <div class='form-group row mt-3 col-7'>
                             <span>Status:</span>
 
                             <select id='minhas_obras_filtro_status' class='form-control ativo_select' onchange='filtrarMinhasObras()'>
@@ -57,7 +66,9 @@
                     {
                         $('#table_consulta_minhas_obras').html(data);
                     }
-                )            
+                )
+
+                sessionStorage.setItem("reload", 'ok' );
             </script>                
 
             <?php

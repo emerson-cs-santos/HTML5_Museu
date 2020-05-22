@@ -103,3 +103,38 @@ body
     background: #2F4F4F;
     cursor: pointer;
   }
+
+  .animation_lopp 
+  {
+    animation: animation_lopp 18s infinite;
+  }
+
+  @keyframes animation_lopp {
+    0% {
+      background-color:black;
+      color: white;
+    }
+    100% {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  .animation 
+  {
+    animation: animation 18s;
+  }
+
+  @keyframes animation {
+    0% {
+      background-color:black;
+      color: white;
+    }
+    100% {
+      background-color: white;
+      color: black;
+    }
+  }
+
+
+  

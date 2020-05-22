@@ -1,5 +1,5 @@
 <?php
-    include('..' . DIRECTORY_SEPARATOR . 'PHP' . DIRECTORY_SEPARATOR . 'sessao.php');
+    include('..' . DIRECTORY_SEPARATOR . 'php' . DIRECTORY_SEPARATOR . 'sessao.php');
 	
 	$filtro_nome = @$_POST['filtro_nome'];
 
@@ -102,6 +102,7 @@
 			echo "<th>Descrição</th>";
 			echo "<th>Edição</th>";
 			echo "<th>Status</th>";
+			echo "<th>Apresentação da Obra</th>";
 			echo "</tr>";
 
 			echo '</thead>';
@@ -138,6 +139,7 @@
 					echo "<td class=' "  . $Style_Status . "'>" . $row["descri"] . "</td>";
 					
 					echo " <td class='$Style_Status'> <a type='button' class='btn btn-primary d-flex justify-content-center' data-placement='top' data-toggle='tooltip' title='Alterar obra' href='minhaObra_digitar.php?ID={$row["id"]}'>	Alterar</a> </td>";
+					echo " <td class='$Style_Status'> <a type='button' class='btn btn-info d-flex justify-content-center' data-placement='top' data-toggle='tooltip' title='Ver apresentação da obra' href='obra.php?ID={$row["id"]}'>	Ver Obra</a> </td>";
 					echo " <td class='$Style_Status'> <a type='button' class='btn $Cor_botao_inativar d-flex justify-content-center' data-placement='top' data-toggle='tooltip' title='$ToolTipText_inativar' onclick='desativar({$row["id"]})' >$texto</a> </td>";
 
 					echo "</tr>";			

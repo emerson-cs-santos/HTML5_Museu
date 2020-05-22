@@ -1,0 +1,81 @@
+[data-anime] {
+    transition: 2s;
+}
+
+[data-anime="left"] {
+    transform: translate3d(-50px, 0, 0)
+}
+
+[data-anime="right"] {
+    transform: translate3d(50px, 0, 0)
+}
+
+[data-anime="up"] {
+    transform: translate3d(0, -50px, 0)
+}
+
+[data-anime="down"] {
+    transform: translate3d(0, 50px, 0)
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px)
+}
+
+
+/* Exibição de todas as obras */
+
+#card_obras p::first-letter {
+    font-size: 150%;
+    color: rgb(66, 66, 230);
+    font-weight: bold;
+    font-style: italic;
+}
+
+#card_obras p {
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 5px;
+    border: rgb(230, 227, 227) 1px solid;
+}
+
+
+/* Animação */
+
+#card_obras p:hover {
+    animation: bounce 1s;
+}
+
+@keyframes bounce {
+    10% {
+        transform: translateY(-10px);
+    }
+    25% {
+        transform: translateY(10px);
+    }
+}
+
+[data-anime] {
+    transition: 2s;
+}
+
+[data-anime="left"] {
+    transform: translate3d(-50px, 0, 0)
+}
+
+[data-anime="right"] {
+    transform: translate3d(50px, 0, 0)
+}
+
+[data-anime="up"] {
+    transform: translate3d(0, -50px, 0)
+}
+
+[data-anime="down"] {
+    transform: translate3d(0, 50px, 0)
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px)
+}

@@ -2,7 +2,7 @@
     include('php/sessao.php');
     include('cabec.php');
 
-    include('PHP'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
+    include('php'. DIRECTORY_SEPARATOR . 'conexao_bd.php');
 
     $query          = "select email from usuarios where nome = ?";
     $querytratada   = $conn->prepare($query); 
@@ -23,7 +23,7 @@
                 <main>
                     <section class='row'>
 
-                        <div class='form-group col-12'>
+                        <div class='form-group col-12 row'>
                             <div>
                                 <h2> Informações de cadastro </h2>
                             </div>
@@ -34,7 +34,7 @@
                             <div class="d-flex justify-content-center">
                                 <a class='btn btn-secondary MousePoiter text-white mt-3' data-toggle="modal" data-target="#myModal" data-placement="top" data-type="tooltip" title="Trocar senha">Trocar senha</a>
                                 <input type="button" value="Salvar alterações" onclick="atualizarCadastro('<?php echo $nome; ?>', '<?php echo $email; ?>')" class="btn btn-dark mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Atualizar Cadastro" >
-                                <input type="button" value="Desativar cadastro" onclick="desativarUsuarioPerguntar('<?php echo $nome; ?>')" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." >
+                                <input type="button" value="Desativar" onclick="desativarUsuarioPerguntar('<?php echo $nome; ?>')" class="btn btn-secondary mt-3 ml-3" data-placement="top" data-toggle="tooltip" title="Para ativar novamente, basta fazer login novamente." >
                             </div>
                         </div>
 
