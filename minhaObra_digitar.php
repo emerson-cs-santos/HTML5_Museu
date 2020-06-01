@@ -208,7 +208,7 @@ if( $repetir == 1 )
 
                                 <div class="form-check row mt-3">
                                     <input class="form-check-input" type="checkbox" id="minhaObra_digitar_loop" <?php echo $loop  ?>  name="minhaObra_digitar_loop" onchange="salvarLocal()" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente">
-                                    <label class="form-check-label" for="minhaObra_digitar_loop" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente"> Exibir em loop </label>
+                                    <label class="form-check-label" for="minhaObra_digitar_loop" data-placement="top" data-toggle="tooltip" title="Exibir a apresentação repetidamente"> Loop de efeito do background </label>
                                 </div>        
                                 
                                 <div class='form-group row mt-3'>
